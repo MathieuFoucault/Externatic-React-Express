@@ -29,8 +29,11 @@ import {
 import { login, verifyToken } from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
+const { validateUserForm, add } = userActions;
+
 router.post(
   "/api/usercandidateformregister",
+  validateUserForm,
   hashPassword,
   checkEmail,
   candidateRegister,

@@ -1,6 +1,8 @@
 import type { RequestHandler } from "express";
 
+import { z } from "zod";
 import userRepository from "./UsersRepository";
+import userFormSchema from "./user.validation";
 
 const add: RequestHandler = async (req, res, next) => {
   try {
@@ -102,6 +104,19 @@ const getLatestProfiles: RequestHandler = async (req, res, next) => {
   }
 };
 
+const validateUserForm: RequestHandler = async (req, res, next) => {
+  try {
+    await userFormSchema.parseAsync(req.body);
+    next();
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      res.status(400).json({ errors: err.errors });
+    } else {
+      next(err);
+    }
+  }
+};
+
 export default {
   add,
   browseCandidates,
@@ -110,4 +125,5 @@ export default {
   anonymizeCompany,
   readUserData,
   getLatestProfiles,
+  validateUserForm,
 };
