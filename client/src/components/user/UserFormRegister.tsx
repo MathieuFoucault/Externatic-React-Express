@@ -205,25 +205,21 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
         <section className="mb-6">
           <label
             htmlFor="is_active"
-            className="block text-sm  text-white font-semibold"
+            className="block text-sm text-white font-semibold"
           >
             Je souhaite être actif sur le site Externatic ?
             <article>
               <input
-                {...register("is_active")}
+                {...register("is_active", { required: "Ce champ est requis" })}
                 type="radio"
-                name="is_active"
-                id="is_active_true"
-                value="1"
+                value="1" // Utiliser une chaîne pour correspondre au schéma Zod
                 className="mt-2 ml-3 mr-3"
               />
               Oui
               <input
-                {...register("is_active")}
+                {...register("is_active", { required: "Ce champ est requis" })}
                 type="radio"
-                name="is_active"
-                id="is_active_false"
-                value="0"
+                value="0" // Utiliser une chaîne pour correspondre au schéma Zod
                 className="mt-2 ml-6 mr-3"
                 defaultChecked
               />
@@ -231,27 +227,24 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
             </article>
           </label>
         </section>
+
         <section className="mb-6">
           <label
             htmlFor="is_role"
-            className="block text-sm  text-white font-semibold"
+            className="block text-sm text-white font-semibold"
           >
             Je souhaite rester connecté sur le site ?
             <article>
               <input
-                {...register("is_role")}
+                {...register("is_role", { required: "Ce champ est requis" })}
                 type="radio"
-                name="is_role"
-                id="is_role_true"
                 value="1"
                 className="mt-2 ml-3 mr-3"
               />
               Oui
               <input
-                {...register("is_role")}
+                {...register("is_role", { required: "Ce champ est requis" })}
                 type="radio"
-                name="is_role"
-                id="is_role_false"
                 value="0"
                 className="mt-2 ml-6 mr-3"
                 defaultChecked

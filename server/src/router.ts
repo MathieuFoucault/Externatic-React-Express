@@ -29,8 +29,11 @@ import {
 import { login, verifyToken } from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
+const { validateUserForm, add } = userActions;
+
 router.post(
   "/api/usercandidateformregister",
+  validateUserForm,
   hashPassword,
   checkEmail,
   candidateRegister,
@@ -38,6 +41,7 @@ router.post(
 );
 router.post(
   "/api/usercompanyformregister",
+  validateUserForm,
   hashPassword,
   checkEmail,
   companyRegister,
@@ -91,6 +95,7 @@ router.use(
   express.static(path.join(__dirname, "/middlewares/uploads")),
 );
 
+import candidateUpdateSchema from "./modules/candidate/candidate.validation";
 import candidateActions from "./modules/candidate/candidateActions";
 
 router.get("/api/user/:id", userActions.readUserData);
