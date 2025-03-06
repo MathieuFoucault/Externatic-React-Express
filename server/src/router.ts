@@ -41,6 +41,7 @@ router.post(
 );
 router.post(
   "/api/usercompanyformregister",
+  validateUserForm,
   hashPassword,
   checkEmail,
   companyRegister,
@@ -94,6 +95,7 @@ router.use(
   express.static(path.join(__dirname, "/middlewares/uploads")),
 );
 
+import candidateUpdateSchema from "./modules/candidate/candidate.validation";
 import candidateActions from "./modules/candidate/candidateActions";
 
 router.get("/api/user/:id", userActions.readUserData);
